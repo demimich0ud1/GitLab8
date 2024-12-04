@@ -1,7 +1,7 @@
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
 
-public class StringStackImpl implements StringStackImpl
+public class StringStackImpl implements StringStackImpl{
 	private static class Node{
 		double data;
 		Node next;
@@ -11,4 +11,4 @@ public class StringStackImpl implements StringStackImpl
 			this.next = null;
 			}
 	}
-	
+}
