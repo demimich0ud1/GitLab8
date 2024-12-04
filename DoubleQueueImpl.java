@@ -1,7 +1,7 @@
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
 
-public class StringStackImpl implements StringStackImpl{
+public class DoubleQueueImpl implements DoubleQueue{
 	private static class Node{
 		double data;
 		Node next;
@@ -11,37 +11,47 @@ public class StringStackImpl implements StringStackImpl{
 			this.next = null;
 			}
 	}
-	private Node peak;
+	private Node head, tail;
 	private int size;
 
-	public StringStackImpl(){
-		peak = null;
+	public DoubleQueueImpl(){
+		head = tail = null;
 		size = 0;
 	}
 
 	@Override
 	public boolean isEmpty(){
-		return peak == null;
+		return head == null;
 	}
-
-	public void push(String item){
+	@Override
+	public void put(double item){
 		Node newNode = new Node(item);
-		newNode.next = top;
-		peak = newNode;
+		if (isEmpty()){
+			head = tail = newNode;\
+		} else { 
+			tail.next = newNode;
+			tail = newNode;
+		}
 		size++;
 	}
 
 	@Override
-	public String pop(){
+	public double get(){
 		if (isEmpty()){
-			throw new NoSuchElementException("Stack is Empty"); 
+			throw new NoSuchElementException("Queue is Empty"); 
 		}
-		String item = peak.data;
-		peak = peak.next;
+		double item = head.data;
+		head = head.next;
+		if (head == null){
+			tail = null;
+		}
 		size--;
 		return item;
 	}
+
+	
 }
+
 
 
 
